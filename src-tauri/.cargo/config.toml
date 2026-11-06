@@ -1,0 +1,11 @@
+# 本机全局 ~/.cargo/config.toml 把 crates-io 指向了已失效的 USTC git 镜像
+# （git://mirrors.ustc.edu.cn/crates.io-index），会直接卡在拉取依赖。
+# 项目内用稀疏索引覆盖，需要时改 registry 即可。
+[source.crates-io]
+replace-with = "ustc-sparse"
+
+[source.ustc-sparse]
+registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
+
+[net]
+git-fetch-with-cli = true

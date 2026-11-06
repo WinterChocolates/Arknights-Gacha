@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "默认权限：只开放核心能力，不需要文件/网络插件",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}

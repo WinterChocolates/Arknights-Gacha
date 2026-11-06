@@ -1,0 +1,42 @@
+{
+  "name": "arknights-gacha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "明日方舟寻访记录（Nuxt 4 页面前端 + Tauri 2 桌面壳）",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "dev:desktop": "tauri dev",
+    "build": "nuxt generate",
+    "build:desktop": "nuxt generate && tauri build",
+    "postinstall": "nuxt prepare",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "keywords": [
+    "arknights",
+    "gacha",
+    "明日方舟",
+    "寻访记录"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.151",
+    "@nuxt/ui": "^4.12.0",
+    "@tauri-apps/api": "^2.12.4",
+    "echarts": "^6.1.0",
+    "nuxt": "^4.6.4",
+    "tailwindcss": "^4.3.4",
+    "vue": "^3.5.45",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "@types/node": "^26.6.6",
+    "nuxt-echarts": "^1.1.0",
+    "typescript": "~5.9.3",
+    "vue-tsc": "^3.3.14"
+  }
+}

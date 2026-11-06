@@ -1,0 +1,16 @@
+node_modules/
+userData/
+.npmrc
+*.log
+.DS_Store
+.tmp/
+
+# Nuxt 产物
+.nuxt/
+.output/
+.data/
+dist/
+
+# Tauri
+src-tauri/target/
+src-tauri/gen/schemas/

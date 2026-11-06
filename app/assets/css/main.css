@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* ---------- 配色：参考 endfield-gacha（primary green / neutral slate） ---------- */
+
+/* 星级配色：图表、表格、徽标共用同一套口径，与 app/utils/theme.ts 保持一致 */
+:root {
+  --ark-six: #ff8904;
+  --ark-five: #fdc700;
+  --ark-four: #ad46ff;
+  --ark-three: #51a2ff;
+  --ark-two: #05df72;
+  --ark-one: #71717b;
+
+  /* 强调色跟随主题主色（绿） */
+  --ark-accent: var(--ui-primary);
+}
+
+.rarity-6 {
+  color: var(--ark-six);
+}
+.rarity-5 {
+  color: var(--ark-five);
+}
+.rarity-4 {
+  color: var(--ark-four);
+}
+.rarity-3 {
+  color: var(--ark-three);
+}
+.rarity-2 {
+  color: var(--ark-two);
+}
+.rarity-1 {
+  color: var(--ark-one);
+}
+
+/* 滚动条：透明轨道 + 半透明滑块，亮 / 暗各一套 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 20%);
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 25%);
+}
+
+/* 数字等宽，避免统计跳动 */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+html,
+body,
+#__nuxt {
+  height: 100%;
+}
+
+/* 纯白背景：不随 colorMode 变化，页面主体与卡片均为白色 */
+html,
+body {
+  background-color: #ffffff;
+}
+
+/* 强制浅色渲染：原生控件（滚动条 / 输入框）不跟随系统深色模式 */
+html {
+  color-scheme: light;
+}
+
+body {
+  overscroll-behavior: none;
+}
