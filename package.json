@@ -12,6 +12,7 @@
     "dev:desktop": "tauri dev",
     "build": "nuxt generate",
     "build:desktop": "nuxt generate && tauri build",
+    "tauri": "tauri",
     "postinstall": "nuxt prepare",
     "typecheck": "vue-tsc --noEmit"
   },
