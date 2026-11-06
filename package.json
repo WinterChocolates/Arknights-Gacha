@@ -1,6 +1,6 @@
 {
   "name": "arknights-gacha",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "明日方舟寻访记录（Nuxt 4 页面前端 + Tauri 2 桌面壳）",
   "type": "module",

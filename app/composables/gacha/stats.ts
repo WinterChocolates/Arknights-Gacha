@@ -15,7 +15,8 @@ const round = (value: number, digits = 2): number => {
 /**
  * 统计口径（与官方寻访页一致，不做卡池概率推断）：
  * - 每一条记录计 1 抽
- * - `pullsSinceLastSix` 表示「出这个 6★ 之前垫了多少抽」
+ * - 垫抽按「卡池分类」独立累计：与游戏保底机制一致，限定/常驻/中坚等分类之间的垫抽互不共享
+ * - `pullsSinceLastSix` 表示「出这个 6★ 之前，在该 6★ 所属分类里垫了多少抽」（首条为该分类开始以来的抽数）
  * - 平均值 = 总抽数 / 6★ 数量
  */
 export function computeStats(records: GachaRecord[], categoryId?: string): GachaStats {
@@ -25,11 +26,16 @@ export function computeStats(records: GachaRecord[], categoryId?: string): Gacha
   const rarityCount = new Map<number, number>();
   const pools = new Map<string, PoolStats>();
   const sixStarsAsc: SixStarEntry[] = [];
-  let counter = 0;
+  // 每个卡池分类一个独立计数器；最近一次抽卡所在分类的计数即「当前垫抽」
+  const counters = new Map<string, number>();
+  let lastCategoryId: string | null = null;
   let newCharCount = 0;
 
   for (const record of asc) {
-    counter++;
+    const bucketKey = record.categoryId || "";
+    lastCategoryId = bucketKey;
+    const count = (counters.get(bucketKey) ?? 0) + 1;
+    counters.set(bucketKey, count);
     rarityCount.set(record.rarity, (rarityCount.get(record.rarity) ?? 0) + 1);
     if (record.isNew) newCharCount++;
 
@@ -55,14 +61,16 @@ export function computeStats(records: GachaRecord[], categoryId?: string): Gacha
     if (record.rarity >= 6) {
       sixStarsAsc.push({
         record,
-        pullsSinceLastSix: counter,
+        pullsSinceLastSix: count,
       });
-      counter = 0;
+      counters.set(bucketKey, 0);
     }
   }
 
   const totalPulls = asc.length;
   const sixStarCount = sixStarsAsc.length;
+  // 「当前垫抽」：最近一次抽卡所在分类的垫抽数（保底按分类独立计算，混入其他分类会虚高）
+  const pullsSinceLastSixStar = lastCategoryId === null ? 0 : counters.get(lastCategoryId) ?? 0;
   const gaps = sixStarsAsc.slice(1).map((entry) => entry.pullsSinceLastSix);
   const averageSixStarGap = gaps.length
     ? round(gaps.reduce((sum, gap) => sum + gap, 0) / gaps.length, 2)
@@ -82,7 +90,7 @@ export function computeStats(records: GachaRecord[], categoryId?: string): Gacha
     sixStarCount,
     averagePullsPerSixStar: sixStarCount ? round(totalPulls / sixStarCount, 2) : null,
     averageSixStarGap,
-    pullsSinceLastSixStar: counter,
+    pullsSinceLastSixStar,
     newCharCount,
     poolCount: pools.size,
     pools: [...pools.values()].sort((a, b) => b.lastTs - a.lastTs),

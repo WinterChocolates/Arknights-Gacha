@@ -177,7 +177,7 @@ export interface PoolStats {
 
 export interface SixStarEntry {
   record: GachaRecord;
-  /** 距上一次 6★ 之间抽了多少抽（首条为自卡池开始以来的抽数） */
+  /** 距上一次 6★ 之间垫了多少抽（按卡池分类独立计算，与游戏保底口径一致；首条为该分类开始以来的抽数） */
   pullsSinceLastSix: number;
 }
 
@@ -190,7 +190,7 @@ export interface GachaStats {
   averagePullsPerSixStar: number | null;
   /** 只看 6★ 之间的间隔均值，无数据时为 null */
   averageSixStarGap: number | null;
-  /** 当前距离上一个 6★ 已经抽了多少次 */
+  /** 最近一次抽卡所在分类中，距离上一个 6★ 已经抽了多少次（保底按分类独立计算） */
   pullsSinceLastSixStar: number;
   newCharCount: number;
   poolCount: number;
