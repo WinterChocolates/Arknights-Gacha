@@ -98,7 +98,7 @@ Rust 侧暴露的命令：`data_dir`、`read_config` / `save_config`、`read_rec
 本工具支持 **Windows**。
 
 1. 前往 [Releases](https://github.com/WinterChocolates/Arknights-Gacha/releases) 页面。
-2. 下载最新版本的 NSIS 安装包（`Arknights.Gacha_x.y.z_x64-setup.exe`）或便携版 `arknights-gacha.exe`。
+2. 下载最新版本的 NSIS 安装包（`Arknights.Gacha_x.y.z_x64-setup.exe`）或免安装便携版（`Arknights.Gacha_x.y.z_x64-portable.exe`）。
 3. 运行即可（便携版请确保应用所在目录具备写入权限，以便创建/写入 `userData/`）。
 
 也可以自行构建，见下方[开发](#开发)一节。
