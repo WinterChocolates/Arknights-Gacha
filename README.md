@@ -54,12 +54,12 @@
 
 ## 技术栈
 
-- **前端**：Nuxt 4（`ssr: false`，SPA）+ Vue 3 + TypeScript
-- **UI**：@nuxt/ui（Tailwind CSS v4，锁定 light）
-- **图表**：ECharts（`nuxt-echarts`，SVG 渲染）
-- **桌面端**：Tauri 2（`reqwest` 代发请求，绕开 WebView CORS）
+- **前端**：Nuxt 4 + Vue 3 + TypeScript
+- **UI**：@nuxt/ui
+- **图表**：ECharts
+- **桌面端**：Tauri 2
 
-整体架构参考了 [endfield-gacha](https://github.com/WinterChocolates/endfield-gacha)，接口链路按明日方舟官方寻访页适配。
+整体架构参考了 [endfield-gacha](https://github.com/bhaoo/endfield-gacha)，接口链路按明日方舟官方寻访页适配。
 
 ## 下载与安装
 
