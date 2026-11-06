@@ -108,7 +108,7 @@ Rust 侧暴露的命令：`data_dir`、`read_config` / `save_config`、`read_rec
 ### 获取 Token
 
 1. 浏览器登录 <https://web-api.hypergryph.com/account/info/hg>。
-2. 页面返回的 JSON 里 `data.token` 就是需要的 Token（一长串字母数字）。
+2. 页面返回的 JSON 里 `content` 就是需要的 Token（一长串字母数字）。
 3. 确认鹰角账号已绑定明日方舟角色：<https://user.hypergryph.com/bindCharacters>。
 
 ### 添加账号同步
