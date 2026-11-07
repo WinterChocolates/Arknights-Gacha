@@ -89,6 +89,7 @@ userData/
 - 写入采用「临时文件 + rename」的原子替换，并保留上一版 `.bak`；主文件损坏或为空时读取自动回退到备份。
 - 设置页会显示当前实际使用的数据目录。
 - 开发态是 `src-tauri/target/debug/userData/`，安装后是「安装目录\userData\」（默认 `%LOCALAPPDATA%\Programs\Arknights Gacha`）。
+- 浏览器内核（WebView2）的数据目录 `EBWebView/` 同样放在 exe 同级目录，不写入 AppData；目录不可写时退回系统默认。旧版本在 `%LOCALAPPDATA%\com.winterchocolates.arknightsgacha` 留下的 `EBWebView` 升级后可手动删除。
 
 ## 使用说明
 

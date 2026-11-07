@@ -205,7 +205,7 @@ async function remove(uid: string): Promise<void> {
         </UButton>
       </div>
       <p class="mt-3 text-xs leading-5 text-muted">
-        导出写入系统「下载」目录；数据保存在 exe 同目录的 userData（该目录不可写时退回用户数据目录）：<br />
+        导出写入系统「下载」目录；数据保存在 exe 同目录的 userData，WebView 缓存同理（EBWebView，该目录不可写时退回用户数据目录）：<br />
         <code class="rounded bg-muted px-1 py-0.5">{{ dataDir || "…" }}</code><br />
         <code class="rounded bg-muted px-1 py-0.5">config.json</code> 存账号与同步设置（含 token，只在本机），
         <code class="rounded bg-muted px-1 py-0.5">gachaData/&lt;uid&gt;.json</code> 存寻访记录。

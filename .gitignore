@@ -1,5 +1,6 @@
 node_modules/
 userData/
+EBWebView/
 .npmrc
 *.log
 .DS_Store

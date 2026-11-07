@@ -47,7 +47,7 @@ fn open_window(app: &AppHandle) -> tauri::Result<()> {
     let new_window_handle = app.clone();
     let navigation_handle = app.clone();
 
-    WebviewWindowBuilder::new(app, "main", WebviewUrl::default())
+    let builder = WebviewWindowBuilder::new(app, "main", WebviewUrl::default())
         .title(WINDOW_TITLE)
         .inner_size(1180.0, 820.0)
         .min_inner_size(960.0, 640.0)
@@ -66,8 +66,20 @@ fn open_window(app: &AppHandle) -> tauri::Result<()> {
             }
             open_in_browser(&navigation_handle, target.as_str());
             false
-        })
-        .build()?;
+        });
+
+    // WebView2 用户数据目录：不指定时 Tauri 会强制放进 AppData（生成 EBWebView）。
+    // 这里指定 exe 所在目录，WebView2 运行时会在旁边生成 `EBWebView/`，与 userData 一样随目录走
+    // （便携版 / 用户级安装目录均可写）；目录不可写时（例如装在受保护路径）不设置，退回 Tauri 默认。
+    let webview_data_dir = std::env::current_exe()
+        .ok()
+        .and_then(|exe| exe.parent().map(Path::to_path_buf));
+    let builder = match webview_data_dir {
+        Some(dir) if fs::create_dir_all(dir.join("EBWebView")).is_ok() => builder.data_directory(dir),
+        _ => builder,
+    };
+
+    builder.build()?;
 
     Ok(())
 }
