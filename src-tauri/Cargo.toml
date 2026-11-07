@@ -1,6 +1,6 @@
 [package]
 name = "arknights-gacha"
-version = "1.0.1-fix"
+version = "1.0.2"
 description = "明日方舟寻访记录同步与统计"
 authors = ["Arknights Gacha"]
 edition = "2021"
